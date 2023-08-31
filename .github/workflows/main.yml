@@ -1,0 +1,63 @@
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+env:
+  GKE_CLUSTER: cluster-madhu
+  GKE_ZONE: us-east1-b
+  GKE_KEY: ewogICJ0eXBlIjogInNlcnZpY2VfYWNjb3VudCIsCiAgInByb2plY3RfaWQiOiAibW9kaWZpZWQtbGVnYWN5LTM5NTgxNSIsCiAgInByaXZhdGVfa2V5X2lkIjogIjg3MzA3ZThkMDdiZmVhYTc3ZjZjZmMyMGRhY2I2ZmE1M2ZmYjVhYWUiLAogICJwcml2YXRlX2tleSI6ICItLS0tLUJFR0lOIFBSSVZBVEUgS0VZLS0tLS1cbk1JSUV2Z0lCQURBTkJna3Foa2lHOXcwQkFRRUZBQVNDQktnd2dnU2tBZ0VBQW9JQkFRQzM4cWt6dmdpczVyN2pcbmpZQkdKY1ByeXJ3RkpYcWNOQ2U1MHpETzcrYmd5M2RvVGhwMzBKU1d2WUtoa0lTVEpBNmYxSWM1Z3JwckhIMldcbmdSU3luSWVyREZyM2VEUUd5NTdxNnJydnk5U21jQUgzdUZURytwL3M5QjVsYnp1anM3YkdQaGEweThoLzZUL1lcbmFkci9WSVdWNGYrWnN5ZFR0aU5pcktFMmZaQ3N6WTBMUHU5UzdhK0dqNmtVa3FjSCtNSk5FOU0zOGlQQ0pxRmlcblRvTnh1bDhiQmY4MU5YUktjejNrWkJkd2lGNzlaK2tzRTRVYlFESGVqNTAybWNGZHRSZmt1cW9vNkhZbE5KQS9cblVidmlHbFpNVVRhbUFaY2F0a2VjRXZ6aUozRnBQVjVVdEc4aU54TTN0elR1dDdISkFEZ0RCT1NwL0FFM1puVDJcbjNocFRCM3lIQWdNQkFBRUNnZ0VBS2ppUityVGpJK0NBcnhWQy9KYmRmZWtXTis0dTB0eXJ3NXpFWnJNczRLc0NcbitOZDRmc2pLMmtDY1U3NHFsK1ZlVC9SRnAzOG9qNzVGMno0OGhIU21OUzRNVVNIdmV5SFFrNllXQzBWVFJYS1BcbkdROWZzaDVEaCsxT2JzVFZ3UkRXWW5GTTMrbW9WeWV3QmxuaHNOcHpJUUJ6SFJIQWRKZnBUbFJHV28zK241TFhcbm1LYTBWMm1sU2NjWktSNXVFWmFQVkdMSGJxWFY0U2NqcHE0QytQWjJNSWtRK0VzeEpaQVFMeTdiYm9mdHlGTHlcbnRpRk14K2FzdVQ1VDVWVDY5TFVmREljbnVTcEdHUlc1eUtCU3BZRnVWdHZmZ3N3aGFVTzRHZFN5ZHhBbjgyV0Zcbk5ob0toeDcxVXlIUWxMTlNENCs3cytJa0dwU1hYaGxZb2o3cHdDT0dpUUtCZ1FEL21xdFA4OWZBL01WeVFRMVRcbmJQOG41dW1uRVU2cnF0amhZOUpHdXdmUUd6YWoxRFlDbU5UK1ptYS9RNjB1VFU0S2FCMkFvK0NpczR4Zlk1aEJcbnRRSU1NeWZUbmNaTUtVL1RPTzkwbW5MZFlldHdrVk9uN2RIVVhaek96SjNKUUduNHpyZVVqLzRPOVFHU0lJZlpcbmI5TUJKS0VyU0h6L2MwbjdIMnVGaTk4VUh3S0JnUUM0TzVXb0NDV3JvYXN3eWgzWHZIMmJyU2ZFZDUveUlXbVBcbnU1dkphZ04wQkQwckc4T1hYQjBvckxybkI2eGJ6TUdXSE1XR1g0b3ByZzNJTlFBTUZXQzlkejkxM1dBSjRZMU1cbndickxsWkExODV3RGhlSThwMVJTdnhUOXV2UjVFWXVHblJwY2tGZW94c0RXeDQwbkhzZ0VwVEYxMnp2NDNMZGRcbmlkRXYwS3pLbVFLQmdRRDZ5Wmo0azNuSGdydC94TS84WU45aEdURjdtSUdsOGJWbVAvamJLVHNiTnZnL2VrR2Jcbi9yUk0vOUFrTFpUSDcxVjQ1SHE5OHd5KzFvZ09ON3YyREZGOEF0MDZ4bnovMFREZlArZkNjcC90RXR4YzBGcFNcblZBY2k1TTZzSVJ0WGtQbnBBM29nSzcvTWtSdi9jaWVZY2gySDY1YXV6eXJGd1NwL1dHNjQwMm9IWlFLQmdHT2NcbkE3eUlPeVhqRVZZZDBhalZSdXltNEh0L1drRm1BMWN0VG52R0Qvdm9WdEk1L3JTVm4wWmdyZVUvNXRiempDK0hcbmV0eStSMHRseWhuWFhpRXFaZFhLNWNycVdJUy9LTkM1Wmkrd3Uvb1BydWpRdUpPbXZSYklMYWRLTCtoTnJpeW9cblFKcVBpSFcra0lFUC82ZUpJd2d2OE9BU0d3amcvVnRicW5pNTBOTHhBb0dCQU1hU3ZBUUVjeGVVWlZKaDVDMzdcbkFuemVqQ0VHdUVKK3djcmlUY3dZRG10OVFwWTNYTkM0V0tkWUdKVkNRY1F5SjNkcElVM1FsNm1nbEVDbnZTNm9cbmkwREZHa3FFbGptM25jRGhZWExWdWtQaWZRNkZtWlluRlBXSTJoTUJUdUZXSkZDS3pINHdUeFRBTDFCK1pITkhcbkV3V0dEVlByUlR4TzJNSWJMY2lmK041T1xuLS0tLS1FTkQgUFJJVkFURSBLRVktLS0tLVxuIiwKICAiY2xpZW50X2VtYWlsIjogIjEwODQ1ODM5ODQ4NjAtY29tcHV0ZUBkZXZlbG9wZXIuZ3NlcnZpY2VhY2NvdW50LmNvbSIsCiAgImNsaWVudF9pZCI6ICIxMTQ4Njk4MjkwMzk2MjI5MDE5NDAiLAogICJhdXRoX3VyaSI6ICJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20vby9vYXV0aDIvYXV0aCIsCiAgInRva2VuX3VyaSI6ICJodHRwczovL29hdXRoMi5nb29nbGVhcGlzLmNvbS90b2tlbiIsCiAgImF1dGhfcHJvdmlkZXJfeDUwOV9jZXJ0X3VybCI6ICJodHRwczovL3d3dy5nb29nbGVhcGlzLmNvbS9vYXV0aDIvdjEvY2VydHMiLAogICJjbGllbnRfeDUwOV9jZXJ0X3VybCI6ICJodHRwczovL3d3dy5nb29nbGVhcGlzLmNvbS9yb2JvdC92MS9tZXRhZGF0YS94NTA5LzEwODQ1ODM5ODQ4NjAtY29tcHV0ZSU0MGRldmVsb3Blci5nc2VydmljZWFjY291bnQuY29tIiwKICAidW5pdmVyc2VfZG9tYWluIjogImdvb2dsZWFwaXMuY29tIgp9
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+    - name: Build with Maven
+      run: mvn -B package --file demoApi/pom.xml
+      working-directory: ${{ github.workspace }}
+    - name: Set JAR file location as an environment variable
+      run: echo "JAR_FILE_PATH=$(ls -d Maven/target/*.jar)" >> $GITHUB_ENV
+    - name: Display JAR file location
+      run: echo "JAR file is located at:$JAR_FILE_PATH"
+    - name: Show Contents of Maven/target Directory
+      run: ls -R Maven/target
+    - name: Debug Docker Context
+      run: |
+        pwd
+        ls -R          
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: madhu1607
+        password: 123456789@madhu
+    - name: Build and Push Docker Image
+      run: |
+        docker build -t madhu1607/new:latest ./demoApi
+        docker push madhu1607/new:latest
+  Deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: kubectl - Google Cloud GKE cluster.
+      uses: ameydev/gke-kubectl-action@master
+      env:
+        PROJECT_ID: modified-legacy-395815
+        APPLICATION_CREDENTIALS: ${{ env.GKE_KEY }}
+        CLUSTER_NAME: ${{ env.GKE_CLUSTER }}
+        ZONE_NAME: ${{ env.GKE_ZONE }}
+      with:
+        args: apply -f demoApi/deployment.yaml 
